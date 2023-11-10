@@ -1,3 +1,5 @@
+//INI YANG DIPAKE
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +99,45 @@ public class FollowPlayer : MonoBehaviour
 //                 // Mengatur skala objek berdasarkan arah gerakan pemain
 //                 transform.localScale = new Vector3(playerDirection * customScale.x, customScale.y, customScale.z);
 //             }
+//         }
+//     }
+// }
+
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+
+// public class FollowPlayer : MonoBehaviour
+// {
+//     public Transform player; // Pemain yang akan diikuti oleh objek
+//     private Vector3 offset; // Perbedaan posisi antara objek dan pemain
+
+//     public Vector3 customScale = new Vector3(0.119135827f, 0.114318356f, 1f); // Skala khusus untuk objek
+
+//     void Start()
+//     {
+//         // Menghitung perbedaan posisi pada awal permainan
+//         if (player != null)
+//         {
+//             offset = transform.position - player.position;
+//         }
+//     }
+
+//     void LateUpdate()
+//     {
+//         if (player != null)
+//         {
+//             // Menghitung posisi target objek mengikuti pemain dengan offset
+//             Vector3 desiredPosition = player.position + offset;
+
+//             // Mengatur posisi objek sesuai dengan posisi yang telah dihitung
+//             transform.position = desiredPosition;
+
+//             // Menentukan arah gerakan pemain
+//             float playerDirection = player.localScale.x;
+
+//             // Mengatur arah objek berdasarkan arah gerakan pemain
+//             transform.localScale = new Vector3(playerDirection * customScale.x, customScale.y, customScale.z);
 //         }
 //     }
 // }
