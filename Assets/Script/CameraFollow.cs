@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
         if (target != null)
         {
             // Menghitung posisi target dengan sedikit pergeseran pada sumbu Z
-            Vector3 desiredPosition = new Vector3(target.position.x, 0, transform.position.z);
+            Vector3 desiredPosition = new Vector3(target.position.x, -3, transform.position.z);
 
             // Menggunakan fungsi Lerp untuk membuat pergerakan kamera yang halus
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);

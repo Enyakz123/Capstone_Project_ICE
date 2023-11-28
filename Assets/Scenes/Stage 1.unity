@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 113196802}
   - component: {fileID: 113196801}
   - component: {fileID: 113196803}
+  - component: {fileID: 113196804}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -280,7 +281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113196797}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 664733defe87c0c4aa65f947ddd0855a, type: 3}
   m_Name: 
@@ -294,6 +295,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundPosition: {fileID: 991737832}
+--- !u!114 &113196804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113196797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264512c18fa19b7499e17728ae699c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  jetpackForce: 78.66
 --- !u!1 &592799221
 GameObject:
   m_ObjectHideFlags: 0
