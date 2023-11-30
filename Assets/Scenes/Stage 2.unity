@@ -294,7 +294,7 @@ Transform:
   m_GameObject: {fileID: 123274939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.3, y: -3, z: -10}
+  m_LocalPosition: {x: -8.199999, y: -3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -312,8 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e85056d22ae0a44f82cebb9bfe53aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1934246714}
-  smoothSpeed: 3
+  smoothTime: 0
+  positionOffset: {x: 0, y: 0, z: -10}
+  xLimit: {x: -13.5, y: 17.3}
+  yLimit: {x: -3, y: 11}
 --- !u!1 &126273355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5153,6 +5155,7 @@ MonoBehaviour:
   moveSpeed: 4.18
   jetpackForce: 26.54
   maxFlightTime: 5
+  ascentMultiplier: 2
 --- !u!1 &1940336556
 GameObject:
   m_ObjectHideFlags: 0

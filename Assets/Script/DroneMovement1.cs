@@ -8,11 +8,11 @@ public class DroneMovement1 : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jetpackForce = 3f;
     [SerializeField] private float maxFlightTime = 5f;
+    [SerializeField]private float ascentMultiplier = 2f;
     private float currentFlightTime;
     private float moveInput;
     private bool isFlying = false;
     private bool isGrounded = false;
-    
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class DroneMovement1 : MonoBehaviour
     {
         if (isFlying && currentFlightTime > 0)
         {
-            rb.AddForce(Vector2.up * jetpackForce);
+            rb.AddForce(Vector2.up * jetpackForce * ascentMultiplier);
         }
 
         if (isGrounded == false)
@@ -60,6 +60,8 @@ public class DroneMovement1 : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
+    
+
     private void OnCollisionEnter2D(Collision2D col) 
     {
         if (col.gameObject.CompareTag("Ground"))
