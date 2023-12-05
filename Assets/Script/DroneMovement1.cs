@@ -33,6 +33,10 @@ public class DroneMovement1 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
         if (isFlying && currentFlightTime > 0)
         {
             rb.AddForce(Vector2.up * jetpackForce * ascentMultiplier);
