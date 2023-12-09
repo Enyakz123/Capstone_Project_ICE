@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneMovement1 : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    [Header("Movement Parameters")]
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jetpackForce = 3f;
     [SerializeField] private float maxFlightTime = 5f;
-    [SerializeField]private float ascentMultiplier = 2f;
+    [SerializeField] private float ascentMultiplier = 2f;
+
+    private Rigidbody2D rb;
     private float currentFlightTime;
-    private float moveInput;
     private bool isFlying = false;
     private bool isGrounded = false;
 
@@ -20,14 +19,13 @@ public class DroneMovement1 : MonoBehaviour
         currentFlightTime = maxFlightTime;
     }
 
-    void Update()
-    {
-        moveInput = Input.GetAxis("Horizontal");
-        isFlying = Input.GetButton("Fire1");
-        if (isFlying && currentFlightTime > 0)
+    private void Update() {
+        if (isGrounded)
         {
-            currentFlightTime -= Time.deltaTime;
-            Debug.Log(currentFlightTime);
+            if (currentFlightTime < maxFlightTime)
+            {
+                currentFlightTime += Time.deltaTime;
+            }
         }
     }
 
@@ -37,21 +35,23 @@ public class DroneMovement1 : MonoBehaviour
         {
             return;
         }
-        if (isFlying && currentFlightTime > 0)
-        {
-            rb.AddForce(Vector2.up * jetpackForce * ascentMultiplier);
-        }
+        HandleHorizontalMovement();
+        HandleFlying();
+    }
 
+    private void HandleHorizontalMovement()
+    {
+        Vector2 moveDirection = InputManager.GetInstance().GetMoveDirection();
         if (isGrounded == false)
         {
-            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-            if (moveInput > 0)
+            rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
+            if (moveDirection.x > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0); // Menghadap ke kanan
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if (moveInput < 0)
+            else if (moveDirection.x < 0)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0); // Menghadap ke kiri
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
         else
@@ -61,20 +61,34 @@ public class DroneMovement1 : MonoBehaviour
                 currentFlightTime += Time.deltaTime;
             }
             Debug.Log(currentFlightTime);
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            // rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
-    
 
-    private void OnCollisionEnter2D(Collision2D col) 
+    private void HandleFlying()
+    {
+        float jetpackInput = InputManager.GetInstance().GetJetpackInput();
+        isFlying = jetpackInput > 0 && currentFlightTime > 0;
+
+        if (isFlying)
+        {
+            isGrounded = false;
+            rb.AddForce(Vector2.up * jetpackForce * ascentMultiplier);
+
+            currentFlightTime -= Time.deltaTime;
+            Debug.Log(currentFlightTime);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            
             Debug.Log(isGrounded);
         }
     }
+
     private void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
@@ -84,4 +98,3 @@ public class DroneMovement1 : MonoBehaviour
         }
     }
 }
-

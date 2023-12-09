@@ -17,7 +17,7 @@ public class ChatTrigger : MonoBehaviour
         if (PlayerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             notif.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.G))
+            if (InputManager.GetInstance().GetInteractPressed())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }

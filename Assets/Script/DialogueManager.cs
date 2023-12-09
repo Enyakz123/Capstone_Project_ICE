@@ -5,10 +5,15 @@ using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Params")]
+    [SerializeField] private float typingSpeed = 0.04f;
+
     [Header("Dialogue UI")]
+    [SerializeField] private GameObject continueIcon;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
@@ -19,19 +24,27 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     public bool dialogueIsPlaying{ get; private set; }
+    private bool canContinueToNextLine = false;
     private static DialogueManager instance;
     private Story currentStory;
 
     private const string SPEAKER_TAG = "speaker";
     private const string LAYOUT_TAG = "layout";
+    private const string SCENE_TAG = "scene";
+    private Coroutine displayLineCoroutine;
     private void Awake() 
+{
+    if (instance != null && instance != this)
     {
-        if (instance != null)
-        {
-            Debug.LogWarning("Found more than one Dialogue Mnaager in the scene");
-        }
+        Debug.LogWarning("Found more than one Dialogue Manager in the scene. Destroying the new one.");
+        Destroy(gameObject);
+    }
+    else
+    {
         instance = this;
     }
+}
+
     public static DialogueManager GetInstance()
     {
         return instance;
@@ -54,12 +67,18 @@ public class DialogueManager : MonoBehaviour
     }
     private void Update() 
     {
+        // //Menyembunyikan Cursor
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        
         if (!dialogueIsPlaying)
         {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (canContinueToNextLine
+            && InputManager.GetInstance().GetSubmitPressed()
+            && currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
         }
@@ -82,13 +101,47 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
+            if (displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
             HandleTags(currentStory.currentTags);
         }
         else
         {
-            ExitDialogueMode();
+            StartCoroutine(ExitDialogueMode());
+        }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        dialogueText.text = "";
+        continueIcon.SetActive(false);
+        HideChoices();
+        canContinueToNextLine = false;
+
+        foreach (char letter in line.ToCharArray())
+        {
+            if (InputManager.GetInstance().GetSubmitPressed())
+            {
+                dialogueText.text = line;
+                break;
+            }
+            
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        continueIcon.SetActive(true);
+        DisplayChoices();
+        canContinueToNextLine = true;
+    }
+
+    private void HideChoices()
+    {
+        foreach (GameObject choiceButton in choices)
+        {
+            choiceButton.SetActive(false);
         }
     }
 
@@ -112,6 +165,17 @@ public class DialogueManager : MonoBehaviour
                 case LAYOUT_TAG:
                     layoutAnimator.Play(tagValue);
                     break;
+                case SCENE_TAG:
+                    if (splitTag.Length >= 2)
+                    {
+                        string sceneValue = splitTag[1].Trim();
+                        // SceneManager.LoadSceneAsync(sceneValue);
+                    }
+                    else
+                    {
+                        Debug.LogError("Invalid SCENE_TAG format: " + tag);
+                    }
+                    break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
                     break;
@@ -119,11 +183,35 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ExitDialogueMode()
+    private IEnumerator ExitDialogueMode()
     {
+        yield return new WaitForSeconds(0.1f);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        string sceneToLoad = "";  // Variabel untuk menyimpan nilai scene
+
+        // Tambahkan logika untuk mendapatkan nilai scene dari tag SCENE_TAG yang terakhir
+        foreach (string tag in currentStory.currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length >= 2 && splitTag[0].Trim() == SCENE_TAG)
+            {
+                sceneToLoad = splitTag[1].Trim();
+                break;  // Keluar dari loop setelah menemukan tag SCENE_TAG
+            }
+        }
+
+        // Memuat scene jika nilai sceneToLoad tidak kosong
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadSceneAsync(sceneToLoad);
+        }
+        else
+        {
+            Debug.LogWarning("No SCENE_TAG found or invalid format. No scene loaded.");
+        }
     }
 
     private void DisplayChoices()
@@ -162,6 +250,11 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
+        if (canContinueToNextLine)
+        {
+            currentStory.ChooseChoiceIndex(choiceIndex);
+            ContinueStory();
+        }
+        
     }
 }
