@@ -177,51 +177,23 @@
                 },
                 {
                     "name": "",
+                    "id": "8a372e46-4905-497e-947f-2da653002dc4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "27d0184a-4e16-4852-b1e4-eb4b8b3bf876",
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interract",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "389dfc7c-ef38-4ae3-beb2-1e8bd259d769",
-            "actions": [
-                {
-                    "name": "Mouse",
-                    "type": "Button",
-                    "id": "128b91fe-c2ac-434f-8356-31369cb281c5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "5bef97e4-02a0-4ff3-960f-a0a4055cb802",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "54d1271c-1b7a-4714-b3c3-ec0184bcc1da",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

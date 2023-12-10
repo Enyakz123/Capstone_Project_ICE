@@ -4,15 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseScreen;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePauseScreen();
-        }
-    }
-
-    void TogglePauseScreen()
+    public void TogglePauseScreen()
     {
         if (pauseScreen != null)
         {
