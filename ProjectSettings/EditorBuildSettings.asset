@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Bug 2.unity
     guid: 9d31cf28f9f04bb46ad588c8c8c4b1ea
   - enabled: 1
+    path: Assets/Scenes/FinalStage.unity
+    guid: 80d1f70d68f12c84b8c0204388c0865d
+  - enabled: 1
     path: Assets/Scenes/NEXT SCENE.unity
     guid: 930ad172a54a26347a9ee4e3d0d8f78a
   - enabled: 1

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class FinishPoint : MonoBehaviour
 {
     [SerializeField] private PlayableDirector timeline;
+    public int scenenumber;
 
     private void OnTriggerEnter2D(Collider2D col) 
     {
@@ -26,7 +27,7 @@ public class FinishPoint : MonoBehaviour
             timeline.stopped -= OnTimelineStopped;
 
             // Pindah ke adegan berikutnya setelah timeline selesai
-            SceneManager.LoadSceneAsync(7);
+            SceneManager.LoadSceneAsync(scenenumber);
         }
     }
 }

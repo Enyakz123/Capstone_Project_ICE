@@ -7026,7 +7026,7 @@ PrefabInstance:
       objectReference: {fileID: 1243336195}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[1].first
@@ -7042,14 +7042,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[4].first
-      value: c7fcf5b50a2750548b6aec7d316d4699
+      value: 2d0060c5f2ce9e149bcc396e1ed83b9d
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[5].first
-      value: 5fbaa9db0eec5ab4f98e3db6b980c467
+      value: c7fcf5b50a2750548b6aec7d316d4699
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[6].first
+      value: 5fbaa9db0eec5ab4f98e3db6b980c467
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[7].first
       value: b913c62740cc1ca4fb77c1574aec8287
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
@@ -7066,6 +7070,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
       propertyPath: m_ExposedReferences.m_References.Array.data[4].second
+      value: 
+      objectReference: {fileID: 862084767}
+    - target: {fileID: 7712522778534942418, guid: 76829594796950849899c7fc664942bf, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[5].second
       value: 
       objectReference: {fileID: 862084767}
     m_RemovedComponents: []

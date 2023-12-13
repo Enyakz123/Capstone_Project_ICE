@@ -21,7 +21,7 @@ public class TimelineDestroyCamera : MonoBehaviour
         playableDirector.stopped += OnTimelineFinished;
     }
 
-    private void OnTimelineFinished(PlayableDirector aDirector)
+    private void OnTimelineFinished(PlayableDirector Director)
     {
         // Destroy CinemachineBrain component when the timeline is finished
         DestroyCinemachineBrain();
