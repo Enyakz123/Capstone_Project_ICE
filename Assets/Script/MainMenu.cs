@@ -5,10 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private int Scene;
+    [SerializeField] private GameObject [] Stage;
+    private int activeStageIndex;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(Scene);
+        activeStageIndex = GetActiveStageIndex();
+        SceneManager.LoadScene(activeStageIndex);
         AudioManager.Instance.musicSource.Stop();
+    }
+
+    private int GetActiveStageIndex()
+    {
+        for (int i = 0; i < Stage.Length; i++)
+        {
+            if (Stage[i].activeSelf)
+            {
+                return i + 1;
+            }
+        }
+        return 1;
     }
 }

@@ -13,6 +13,7 @@ public class FinishPoint : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            UnlockedLevel();
             timeline.stopped += OnTimelineStopped; // Menambahkan event handler
             timeline.Play();
             // GetComponent<BoxCollider2D>().enabled = false;
@@ -29,5 +30,10 @@ public class FinishPoint : MonoBehaviour
             // Pindah ke adegan berikutnya setelah timeline selesai
             SceneManager.LoadSceneAsync(scenenumber);
         }
+    }
+    private void UnlockedLevel()
+    {
+        PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
+        PlayerPrefs.Save();
     }
 }

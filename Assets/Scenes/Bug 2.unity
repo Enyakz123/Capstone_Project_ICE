@@ -414,6 +414,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 548532747}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneChanges
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320528090932732875, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4453028780467247924, guid: e89f058973e7ad44eba74e0e629a1823, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5364,6 +5392,10 @@ PrefabInstance:
       propertyPath: choices.Array.data[1]
       value: 
       objectReference: {fileID: 54409697}
+    - target: {fileID: 240156380558256102, guid: d262ee3f7b9d11c43884f7f87aca62ca, type: 3}
+      propertyPath: scene
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 240156380558256102, guid: d262ee3f7b9d11c43884f7f87aca62ca, type: 3}
       propertyPath: pauseScreen
       value: 
